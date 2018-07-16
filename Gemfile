@@ -15,6 +15,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem 'bootstrap', '~> 4.0'
+gem 'ransack', '~> 1.7'
 
 
 
