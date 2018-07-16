@@ -1,5 +1,4 @@
 class MainController < ApplicationController
-  before_action :force_json, only: :search
 
   def index
   end
@@ -10,12 +9,14 @@ class MainController < ApplicationController
   def search
     @movies = Movie.ransack(name_cont: params[:q]).result(distinct: true).limit(5)
     @directors = Director.ransack(name_cont: params[:q]).result(distinct: true).limit(5)
-  end
 
-  private
-
-    def force_json
-      request.format = :json
+    respond_to do |format|
+      format.html {}
+      format.json {
+        @movies = @movies.limit(5)
+        @directors = @directors.limit(5)
+      }
     end
+  end
 
 end
